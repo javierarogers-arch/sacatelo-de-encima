@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fffaf6">
+  <title>Te leo 👀</title>
+  <style>
+    :root{--bg:#fffaf6;--card:#fff;--text:#24211f;--muted:#6f6862;--line:#eadfd8;--accent:#d98f70;--accent-dark:#b96f53;--soft:#f7ece6;--success:#eef7ef}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(180deg,#fffaf6 0%,#fffdfb 55%,#fff 100%);color:var(--text);-webkit-text-size-adjust:100%}
+    .wrap{width:min(760px,calc(100% - 22px));margin:0 auto;padding:28px 0 60px}
+    .eyebrow{display:inline-flex;padding:8px 12px;border-radius:999px;background:var(--soft);color:var(--accent-dark);font-weight:700;font-size:14px;margin-bottom:18px}
+    h1{font-size:clamp(34px,8vw,58px);line-height:.98;letter-spacing:-.045em;margin:0 0 18px}
+    .lead{font-size:17px;line-height:1.55;color:var(--muted);margin:0 0 26px}
+    form{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 14px 44px rgba(80,52,39,.07)}
+    .note{background:var(--success);border:1px solid #d8ead9;border-radius:14px;padding:13px 14px;margin-bottom:22px;color:#405b43;font-size:14px;line-height:1.5}
+    .field{margin-bottom:22px} label{display:block;font-weight:750;margin-bottom:8px;line-height:1.35}.hint{display:block;font-size:13px;font-weight:500;color:var(--muted);margin-top:4px}
+    input,textarea,select{width:100%;border:1px solid var(--line);border-radius:14px;padding:14px 15px;font:inherit;font-size:16px;color:var(--text);background:#fff;outline:none}
+    textarea{min-height:120px;resize:vertical} input:focus,textarea:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(217,143,112,.12)}
+    .instagram-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}.instagram-input:focus-within{border-color:var(--accent);box-shadow:0 0 0 4px rgba(217,143,112,.12)}.at-prefix{padding-left:15px;font-weight:700;color:var(--muted)}.instagram-input input{border:0;box-shadow:none;padding-left:6px}.contact-hint{margin-bottom:9px}
+    button{width:100%;border:0;border-radius:16px;padding:16px 20px;background:var(--accent);color:#fff;font-weight:800;font-size:16px;cursor:pointer}button:disabled{opacity:.65;cursor:wait}
+    .submit-status{display:none;margin-top:16px;padding:14px 16px;border-radius:14px;text-align:center;font-weight:700;line-height:1.4}.submit-status.success{display:block;background:#eef7ef;border:1px solid #cfe5d2;color:#2f6b3c}.submit-status.error{display:block;background:#fff1f1;border:1px solid #edcccc;color:#9b2c2c}
+    .footer{text-align:center;color:var(--muted);font-size:13px;margin-top:24px}
+    @media (max-width:480px){.wrap{width:calc(100% - 16px);padding-top:18px}.eyebrow{font-size:13px;margin-bottom:14px}h1{font-size:38px;margin-bottom:14px}.lead{font-size:16px;margin-bottom:20px}form{padding:16px;border-radius:18px}.field{margin-bottom:18px}textarea{min-height:105px}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <div class="eyebrow">✨ Menos enredo, más tiempo para tu negocio</div>
+  <h1>¿Qué te gustaría sacarte de encima?</h1>
+  <p class="lead">Te toma solo 2 minutos 💛</p>
+  <form id="cortisol-free-form">
+    <div class="note">No necesitas tener clara la solución. Cuéntame cómo lo haces hoy y yo veo si puedo ayudarte.</div>
+    <div class="field"><label for="nombre">Tu nombre</label><input id="nombre" name="nombre" type="text" required autocomplete="name"></div>
+    <div class="field"><label for="negocio">Instagram de tu emprendimiento<span class="hint">Escribe solo lo que viene después de @</span></label><div class="instagram-input"><span class="at-prefix">@</span><input id="negocio" name="negocio" type="text" required placeholder="dulcemaria" autocapitalize="none" autocomplete="off" spellcheck="false"></div></div>
+    <div class="field"><label for="problema">¿Qué tarea te gustaría sacarte de encima?</label><textarea id="problema" name="problema" required placeholder="Ej: responder siempre lo mismo, ordenar pedidos, cotizar, hacer seguimiento, coordinar horarios..."></textarea></div>
+    <div class="field"><label for="hoy">¿Cómo lo haces hoy?</label><textarea id="hoy" name="hoy" required placeholder="Cuéntamelo simple. Ej: me escriben por Instagram, anoto en un cuaderno y después confirmo por WhatsApp."></textarea></div>
+    <div class="field"><label for="presupuesto">¿Cuánto vale para ti sacarte esto de encima?<span class="hint">Pensando en una solución puntual y de pago una sola vez.</span></label><select id="presupuesto" name="presupuesto" required><option value="">Elige una opción</option><option>Hasta $50.000</option><option>$50.000 – $100.000</option><option>$100.000 – $200.000</option><option>$200.000 – $350.000</option><option>$350.000+</option><option>No tengo idea todavía</option></select></div>
+    <div class="field"><label for="contacto">(Opcional) Si veo que puedo ayudarte, ¿prefieres que te contacte por WhatsApp o correo?</label><span class="hint contact-hint">Déjalo acá abajo. Si no, te escribo por DM de Instagram 😊</span><input id="contacto" name="contacto" type="text" placeholder="Ej: +56 9... o nombre@correo.com" autocapitalize="none" autocomplete="off"></div>
+    <button id="submit-button" type="submit">Enviar mi caso ✨</button>
+    <div id="submit-status" class="submit-status" role="status" aria-live="polite"></div>
+  </form>
+  <p class="footer">Hecho con cariño para emprendimientos que ya tienen suficiente encima 💛</p>
+</main>
+<script>
+const ENDPOINT='https://script.google.com/macros/s/AKfycbz57sRNYXkRITipCzQ8nNeovIFyEyoSYXp2k73IAHAE8M7QjFGNdPqXrJqww6JqaKnHiQ/exec';
+const form=document.getElementById('cortisol-free-form');const button=document.getElementById('submit-button');const status=document.getElementById('submit-status');
+form.addEventListener('submit',async(e)=>{e.preventDefault();button.disabled=true;button.textContent='Enviando…';status.className='submit-status';status.textContent='';try{await fetch(ENDPOINT,{method:'POST',body:new FormData(form),mode:'no-cors'});form.reset();status.textContent='¡Gracias! 🫶🏼 Tus respuestas fueron enviadas.';status.className='submit-status success';status.scrollIntoView({behavior:'smooth',block:'center'});}catch(err){status.textContent='No pude enviar tus respuestas. Intenta nuevamente.';status.className='submit-status error';status.scrollIntoView({behavior:'smooth',block:'center'});}finally{button.disabled=false;button.textContent='Enviar mi caso ✨';}});
+</script>
+</body>
+</html>
