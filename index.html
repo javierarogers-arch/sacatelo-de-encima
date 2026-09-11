@@ -48,5 +48,6 @@ const ENDPOINT='https://script.google.com/macros/s/AKfycbz57sRNYXkRITipCzQ8nNeov
 const form=document.getElementById('cortisol-free-form');const button=document.getElementById('submit-button');const status=document.getElementById('submit-status');
 form.addEventListener('submit',async(e)=>{e.preventDefault();button.disabled=true;button.textContent='Enviando…';status.className='submit-status';status.textContent='';try{await fetch(ENDPOINT,{method:'POST',body:new FormData(form),mode:'no-cors'});form.reset();status.textContent='¡Gracias! 🫶🏼 Tus respuestas fueron enviadas.';status.className='submit-status success';status.scrollIntoView({behavior:'smooth',block:'center'});}catch(err){status.textContent='No pude enviar tus respuestas. Intenta nuevamente.';status.className='submit-status error';status.scrollIntoView({behavior:'smooth',block:'center'});}finally{button.disabled=false;button.textContent='Enviar mi caso ✨';}});
 </script>
+<!-- trigger Netlify auto-deploy -->
 </body>
 </html>
