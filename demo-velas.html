@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Lumbre — tienda demo</title>
+<style>
+:root{--bg:#f7f2ec;--card:#fff;--text:#2c2824;--muted:#7b7269;--accent:#9b5f46;--line:#e8ded5;--soft:#efe3da;--green:#5b7a60}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
+header{position:sticky;top:0;z-index:10;background:rgba(247,242,236,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{max-width:1100px;margin:auto;padding:16px 20px;display:flex;align-items:center;justify-content:space-between}.brand{font-family:Georgia,serif;font-size:26px;letter-spacing:.02em}.cartBtn{border:0;background:var(--text);color:#fff;border-radius:999px;padding:11px 16px;font-weight:700;cursor:pointer}.hero{max-width:1100px;margin:auto;padding:54px 20px 28px}.eyebrow{color:var(--accent);font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.hero h1{font-family:Georgia,serif;font-size:clamp(44px,8vw,78px);line-height:.95;margin:10px 0 16px;font-weight:500}.hero p{max-width:600px;color:var(--muted);font-size:18px;line-height:1.55}.grid{max-width:1100px;margin:auto;padding:12px 20px 70px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.card{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 10px 30px rgba(74,52,38,.05)}.photo{aspect-ratio:4/3;width:100%;object-fit:cover;background:#ddd}.body{padding:18px}.topline{display:flex;align-items:start;justify-content:space-between;gap:12px}.name{font-family:Georgia,serif;font-size:24px;margin:0}.price{font-weight:800;white-space:nowrap}.desc{color:var(--muted);font-size:14px;line-height:1.45;min-height:41px}.meta{display:flex;justify-content:space-between;align-items:center;margin:16px 0}.stock{font-size:12px;font-weight:800;color:var(--green);background:#eef5ef;padding:7px 9px;border-radius:999px}.stock.low{color:#a05d31;background:#fff1e6}.add{width:100%;border:0;border-radius:13px;padding:13px;background:var(--accent);color:#fff;font-weight:800;cursor:pointer}.add:disabled{opacity:.45;cursor:not-allowed}
+.drawer{position:fixed;inset:0;z-index:50;display:none}.drawer.open{display:block}.shade{position:absolute;inset:0;background:rgba(25,20,16,.45)}.panel{position:absolute;right:0;top:0;height:100%;width:min(430px,100%);background:#fff;padding:24px;overflow:auto;box-shadow:-10px 0 40px rgba(0,0,0,.15)}.panelHead{display:flex;justify-content:space-between;align-items:center}.close{border:0;background:#f2ede8;border-radius:999px;width:38px;height:38px;font-size:20px;cursor:pointer}.item{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}.qty{display:flex;gap:8px;align-items:center}.qty button{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:white;cursor:pointer}.total{display:flex;justify-content:space-between;font-weight:800;font-size:20px;margin:22px 0}.form input,.form textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px 13px;font:inherit;margin:7px 0}.form textarea{min-height:85px;resize:vertical}.order{width:100%;border:0;border-radius:14px;padding:15px;background:#2f6d4f;color:white;font-weight:800;cursor:pointer}.empty{color:var(--muted);padding:30px 0}.success{display:none;margin-top:14px;background:#eef7ef;color:#2f6b3c;border-radius:12px;padding:13px;font-weight:700}.note{max-width:1100px;margin:0 auto 30px;padding:0 20px;color:var(--muted);font-size:13px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:620px){.grid{grid-template-columns:1fr}.hero{padding-top:36px}.hero p{font-size:16px}.nav{padding:13px 14px}.brand{font-size:23px}}
+</style>
+</head>
+<body>
+<header><div class="nav"><div class="brand">Lumbre</div><button class="cartBtn" id="cartBtn">Pedido · <span id="cartCount">0</span></button></div></header>
+<section class="hero"><div class="eyebrow">Velas artesanales · Santiago</div><h1>Enciende lento.</h1><p>Velas de cera vegetal, hechas a mano en pequeños lotes. Mira precios y stock disponible en tiempo real y arma tu pedido en menos de un minuto.</p></section>
+<section class="grid" id="products"></section>
+<div class="note">Demo MVP: los productos, precios y stock se editan desde una sola lista de datos. Las fotos son referenciales.</div>
+
+<div class="drawer" id="drawer"><div class="shade" id="shade"></div><div class="panel">
+<div class="panelHead"><div><div class="eyebrow">Tu pedido</div><h2 style="margin:5px 0 0">Resumen</h2></div><button class="close" id="close">×</button></div>
+<div id="cartItems"></div><div class="total"><span>Total</span><span id="total">$0</span></div>
+<div class="form"><input id="customer" placeholder="Tu nombre"/><input id="phone" placeholder="WhatsApp / teléfono"/><textarea id="notes" placeholder="Notas para tu pedido (opcional)"></textarea></div>
+<button class="order" id="orderBtn">Enviar pedido</button><div class="success" id="success">Pedido enviado ✨ En una versión real, esto entraría automáticamente al centro de pedidos del negocio.</div>
+</div></div>
+<script>
+// ====== EL FOUNDER SOLO EDITA ESTA LISTA ======
+const products=[
+{id:1,name:'Ámbar No. 01',price:14990,stock:12,desc:'Cedro, ámbar y vainilla. Cálida y amaderada.',img:'https://images.unsplash.com/photo-1546551812-9a44595c5fea?auto=format&fit=crop&w=1200&q=80'},
+{id:2,name:'Noche de Higo',price:16990,stock:7,desc:'Higo negro, sándalo y un toque de musk.',img:'https://images.unsplash.com/photo-1575839306030-6878591f0eb1?auto=format&fit=crop&w=1200&q=80'},
+{id:3,name:'Luz de Té',price:8990,stock:24,desc:'Set de 6 velas pequeñas para mesas y rincones.',img:'https://images.unsplash.com/photo-1575840459001-193274524edf?auto=format&fit=crop&w=1200&q=80'},
+{id:4,name:'Cera & Barro',price:12990,stock:3,desc:'Vela de cera natural en pocillo de cerámica.',img:'https://images.unsplash.com/photo-1575980105619-7c0345ae0680?auto=format&fit=crop&w=1200&q=80'},
+{id:5,name:'Taller Reserva',price:18990,stock:5,desc:'Edición especial en frasco, aroma cuero y tonka.',img:'https://images.unsplash.com/photo-1640101999152-64d72b089774?auto=format&fit=crop&w=1200&q=80'}
+];
+const cart={}; const $=s=>document.querySelector(s); const fmt=n=>'$'+n.toLocaleString('es-CL');
+function renderProducts(){ $('#products').innerHTML=products.map(p=>`<article class="card"><img class="photo" src="${p.img}" alt="${p.name}"><div class="body"><div class="topline"><h3 class="name">${p.name}</h3><div class="price">${fmt(p.price)}</div></div><p class="desc">${p.desc}</p><div class="meta"><span class="stock ${p.stock<=4?'low':''}">${p.stock<=4?'Últimas '+p.stock:'Stock: '+p.stock}</span><span style="font-size:12px;color:var(--muted)">220 g</span></div><button class="add" onclick="add(${p.id})" ${p.stock===0?'disabled':''}>Agregar al pedido</button></div></article>`).join(''); }
+function add(id){const p=products.find(x=>x.id===id); cart[id]=Math.min((cart[id]||0)+1,p.stock); updateCart();}
+function change(id,d){cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];updateCart();}
+function updateCart(){const entries=Object.entries(cart);$('#cartCount').textContent=entries.reduce((s,[,q])=>s+q,0);$('#cartItems').innerHTML=entries.length?entries.map(([id,q])=>{const p=products.find(x=>x.id==id);return `<div class="item"><div><strong>${p.name}</strong><div style="color:var(--muted);font-size:13px">${fmt(p.price)} c/u</div></div><div class="qty"><button onclick="change(${id},-1)">−</button><span>${q}</span><button onclick="change(${id},1)">+</button></div></div>`}).join(''):'<div class="empty">Todavía no agregas productos.</div>';const t=entries.reduce((s,[id,q])=>s+products.find(x=>x.id==id).price*q,0);$('#total').textContent=fmt(t);}
+$('#cartBtn').onclick=()=>$('#drawer').classList.add('open');$('#close').onclick=$('#shade').onclick=()=>$('#drawer').classList.remove('open');
+$('#orderBtn').onclick=()=>{if(!Object.keys(cart).length){alert('Agrega al menos un producto.');return;}if(!$('#customer').value.trim()||!$('#phone').value.trim()){alert('Completa tu nombre y contacto.');return;}$('#success').style.display='block';};
+renderProducts();updateCart();
+</script>
+</body>
+</html>
