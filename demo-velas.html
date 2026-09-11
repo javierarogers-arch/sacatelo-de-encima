@@ -18,70 +18,20 @@ header{position:sticky;top:0;z-index:10;background:rgba(247,242,236,.92);backdro
 <section class="hero"><div class="eyebrow">Velas artesanales · Santiago</div><h1>Enciende lento.</h1><p>Velas de cera vegetal, hechas a mano en pequeños lotes. Mira precios y stock disponible en tiempo real, arma tu pedido o cuéntanos si quieres crear algo especial.</p><div class="deliveryInfo">🚚 Productos en stock: entrega en 2–4 días hábiles en Santiago</div></section>
 <section class="grid" id="products"><div class="loading">Cargando catálogo…</div></section>
 <div class="note">Los tiempos de entrega indicados aplican solo a productos disponibles en stock. Los pedidos personalizados se cotizan y coordinan según diseño, cantidad y fecha requerida.</div>
-
-<div class="drawer" id="drawer"><div class="shade" id="shade"></div><div class="panel">
-<div class="panelHead"><div><div class="eyebrow">Tu pedido</div><h2 style="margin:5px 0 0">Resumen</h2></div><button class="close" id="close">×</button></div>
-<div id="cartItems"></div><div class="total"><span>Total</span><span id="total">$0</span></div>
-<div class="form"><input id="customer" placeholder="Tu nombre"/><input id="phone" placeholder="WhatsApp / teléfono"/><textarea id="notes" placeholder="Notas para tu pedido (opcional)"></textarea></div>
-<div class="deliveryBox"><strong>Entrega estimada:</strong> 2–4 días hábiles en Santiago para productos en stock. Te contactaremos por WhatsApp para confirmar disponibilidad, despacho y medio de pago.</div>
-<button class="order" id="orderBtn">Enviar pedido</button><div class="success" id="success">¡Pedido recibido! ✨<br>Te contactaremos a la brevedad por WhatsApp para confirmar tu pedido, disponibilidad y entrega.</div>
-</div></div>
-
-<div class="modal" id="customModal"><div class="shade" id="customShade"></div><div class="modalPanel">
-<div class="panelHead"><div><div class="eyebrow">Pedido personalizado</div><h2 style="margin:5px 0 0">Cuéntanos qué te gustaría crear</h2></div><button class="close" id="customClose">×</button></div>
-<p style="color:var(--muted);line-height:1.5">Puede ser un aroma especial, recuerdos para un evento, velas con etiqueta personalizada, formatos distintos o una idea completamente nueva.</p>
-<div class="form">
-<input id="customName" placeholder="Tu nombre" />
-<input id="customPhone" placeholder="WhatsApp / teléfono" />
-<select id="customType"><option value="">¿Qué quieres crear?</option><option>Velas para evento / matrimonio</option><option>Regalo corporativo</option><option>Aroma personalizado</option><option>Etiqueta o diseño personalizado</option><option>Otro</option></select>
-<textarea id="customIdea" placeholder="Cuéntanos tu idea: cantidad, aroma, colores, fecha, referencias, etc."></textarea>
-<input id="customDate" type="text" placeholder="¿Para cuándo lo necesitas? (opcional)" />
-</div>
-<div class="deliveryBox"><strong>Pedidos personalizados:</strong> el plazo depende de la idea, cantidad y disponibilidad de materiales. Primero revisamos tu solicitud y te contactamos con propuesta, precio y fecha estimada.</div>
-<button class="order" id="customSend">Enviar solicitud</button>
-<div class="success" id="customSuccess">¡Solicitud recibida! ✨<br>Revisaremos tu idea y te contactaremos a la brevedad por WhatsApp para conversar opciones, precio y plazo.</div>
-</div></div>
-
+<div class="drawer" id="drawer"><div class="shade" id="shade"></div><div class="panel"><div class="panelHead"><div><div class="eyebrow">Tu pedido</div><h2 style="margin:5px 0 0">Resumen</h2></div><button class="close" id="close">×</button></div><div id="cartItems"></div><div class="total"><span>Total</span><span id="total">$0</span></div><div class="form"><input id="customer" placeholder="Tu nombre"/><input id="phone" placeholder="WhatsApp / teléfono"/><textarea id="notes" placeholder="Notas para tu pedido (opcional)"></textarea></div><div class="deliveryBox"><strong>Entrega estimada:</strong> 2–4 días hábiles en Santiago para productos en stock. Te contactaremos por WhatsApp para confirmar disponibilidad, despacho y medio de pago.</div><button class="order" id="orderBtn">Enviar pedido</button><div class="success" id="success">¡Pedido recibido! ✨<br>Te contactaremos a la brevedad por WhatsApp para confirmar tu pedido, disponibilidad y entrega.</div></div></div>
+<div class="modal" id="customModal"><div class="shade" id="customShade"></div><div class="modalPanel"><div class="panelHead"><div><div class="eyebrow">Pedido personalizado</div><h2 style="margin:5px 0 0">Cuéntanos qué te gustaría crear</h2></div><button class="close" id="customClose">×</button></div><p style="color:var(--muted);line-height:1.5">Puede ser un aroma especial, recuerdos para un evento, velas con etiqueta personalizada, formatos distintos o una idea completamente nueva.</p><div class="form"><input id="customName" placeholder="Tu nombre" /><input id="customPhone" placeholder="WhatsApp / teléfono" /><select id="customType"><option value="">¿Qué quieres crear?</option><option>Velas para evento / matrimonio</option><option>Regalo corporativo</option><option>Aroma personalizado</option><option>Etiqueta o diseño personalizado</option><option>Otro</option></select><textarea id="customIdea" placeholder="Cuéntanos tu idea: cantidad, aroma, colores, fecha, referencias, etc."></textarea><input id="customDate" type="text" placeholder="¿Para cuándo lo necesitas? (opcional)" /></div><div class="deliveryBox"><strong>Pedidos personalizados:</strong> el plazo depende de la idea, cantidad y disponibilidad de materiales. Primero revisamos tu solicitud y te contactamos con propuesta, precio y fecha estimada.</div><button class="order" id="customSend">Enviar solicitud</button><div class="success" id="customSuccess">¡Solicitud recibida! ✨<br>Revisaremos tu idea y te contactaremos a la brevedad por WhatsApp para conversar opciones, precio y plazo.</div></div></div>
 <footer class="cfFooter">Solución creada por <strong>CortisolFree</strong></footer>
-
 <script>
-const API_URL='https://script.google.com/macros/s/AKfycbz36AA4zd3nmjbCNCBRSU_fuCs-EJONdY6HNJDHF03HUt4xFxEuLY_si5wI_fwwzeU8/exec';
-const imageMap={
-1:'https://images.unsplash.com/photo-1546551812-9a44595c5fea?auto=format&fit=crop&w=1200&q=80',
-2:'https://images.unsplash.com/photo-1575839306030-6878591f0eb1?auto=format&fit=crop&w=1200&q=80',
-3:'https://images.unsplash.com/photo-1575840459001-193274524edf?auto=format&fit=crop&w=1200&q=80',
-4:'https://images.unsplash.com/photo-1575980105619-7c0345ae0680?auto=format&fit=crop&w=1200&q=80',
-5:'https://images.unsplash.com/photo-1640101999152-64d72b089774?auto=format&fit=crop&w=1200&q=80'
-};
+const API_URL='/.netlify/functions/lumbre';
+const imageMap={1:'https://images.unsplash.com/photo-1546551812-9a44595c5fea?auto=format&fit=crop&w=1200&q=80',2:'https://images.unsplash.com/photo-1575839306030-6878591f0eb1?auto=format&fit=crop&w=1200&q=80',3:'https://images.unsplash.com/photo-1575840459001-193274524edf?auto=format&fit=crop&w=1200&q=80',4:'https://images.unsplash.com/photo-1575980105619-7c0345ae0680?auto=format&fit=crop&w=1200&q=80',5:'https://images.unsplash.com/photo-1640101999152-64d72b089774?auto=format&fit=crop&w=1200&q=80'};
 const fallbackImg='https://images.unsplash.com/photo-1602874801006-e26cc4dc8c3f?auto=format&fit=crop&w=1200&q=80';
-let products=[];
-const cart={}; const $=s=>document.querySelector(s); const fmt=n=>'$'+Number(n).toLocaleString('es-CL');
-
-async function loadProducts(){
-  try{
-    const res=await fetch(API_URL+'?action=productos&ts='+Date.now(),{cache:'no-store'});
-    if(!res.ok) throw new Error('No se pudo leer el catálogo');
-    const data=await res.json();
-    if(!data.ok || !Array.isArray(data.productos)) throw new Error('Respuesta inválida');
-    products=data.productos.map(p=>({...p,id:Number(p.id),price:Number(p.price),stock:Number(p.stock),img:p.img||imageMap[Number(p.id)]||fallbackImg,weight:p.weight||'220 g'}));
-    renderProducts();
-    updateCart();
-  }catch(err){
-    console.error(err);
-    $('#products').innerHTML='<div class="loading">No pudimos cargar el catálogo en este momento. Intenta recargar la página.</div>';
-  }
-}
-
-function renderProducts(){
- const regular=products.map(p=>`<article class="card"><img class="photo" src="${p.img}" alt="${p.name}"><div class="body"><div class="topline"><h3 class="name">${p.name}</h3><div class="price">${fmt(p.price)}</div></div><p class="desc">${p.desc||''}</p><div class="meta"><span class="stock ${p.stock<=4?'low':''}">${p.stock===0?'Agotado':p.stock<=4?'Últimas '+p.stock:'Stock: '+p.stock}</span><span style="font-size:12px;color:var(--muted)">${p.weight||''}</span></div><button class="add" onclick="add(${p.id})" ${p.stock===0?'disabled':''}>${p.stock===0?'Sin stock':'Agregar al pedido'}</button></div></article>`).join('');
- const custom=`<article class="card customCard"><div class="customVisual">✨<br>Tu idea</div><div class="body"><div class="topline"><h3 class="name">Crea algo especial</h3><div class="price">A medida</div></div><p class="desc">Cuéntanos qué te gustaría crear y preparamos una propuesta para ti.</p><div class="meta"><span class="stock">Personalizable</span><span style="font-size:12px;color:var(--muted)">Cotización</span></div><button class="add secondary" id="customOpen">Enviar una solicitud</button></div></article>`;
- $('#products').innerHTML=regular+custom; $('#customOpen').onclick=()=>$('#customModal').classList.add('open');
-}
+let products=[];const cart={};const $=s=>document.querySelector(s);const fmt=n=>'$'+Number(n).toLocaleString('es-CL');
+async function loadProducts(){try{const res=await fetch(API_URL+'?action=productos&ts='+Date.now(),{cache:'no-store'});if(!res.ok)throw new Error('No se pudo leer el catálogo');const data=await res.json();if(!data.ok||!Array.isArray(data.productos))throw new Error('Respuesta inválida');products=data.productos.map(p=>({...p,id:Number(p.id),price:Number(p.price),stock:Number(p.stock),img:p.img||imageMap[Number(p.id)]||fallbackImg,weight:p.weight||'220 g'}));renderProducts();updateCart();}catch(err){console.error(err);$('#products').innerHTML='<div class="loading">No pudimos cargar el catálogo en este momento. Intenta recargar la página.</div>';}}
+function renderProducts(){const regular=products.map(p=>`<article class="card"><img class="photo" src="${p.img}" alt="${p.name}"><div class="body"><div class="topline"><h3 class="name">${p.name}</h3><div class="price">${fmt(p.price)}</div></div><p class="desc">${p.desc||''}</p><div class="meta"><span class="stock ${p.stock<=4?'low':''}">${p.stock===0?'Agotado':p.stock<=4?'Últimas '+p.stock:'Stock: '+p.stock}</span><span style="font-size:12px;color:var(--muted)">${p.weight||''}</span></div><button class="add" onclick="add(${p.id})" ${p.stock===0?'disabled':''}>${p.stock===0?'Sin stock':'Agregar al pedido'}</button></div></article>`).join('');const custom=`<article class="card customCard"><div class="customVisual">✨<br>Tu idea</div><div class="body"><div class="topline"><h3 class="name">Crea algo especial</h3><div class="price">A medida</div></div><p class="desc">Cuéntanos qué te gustaría crear y preparamos una propuesta para ti.</p><div class="meta"><span class="stock">Personalizable</span><span style="font-size:12px;color:var(--muted)">Cotización</span></div><button class="add secondary" id="customOpen">Enviar una solicitud</button></div></article>`;$('#products').innerHTML=regular+custom;$('#customOpen').onclick=()=>$('#customModal').classList.add('open');}
 function add(id){const p=products.find(x=>x.id===id);if(!p)return;cart[id]=Math.min((cart[id]||0)+1,p.stock);updateCart();}
 function change(id,d){const p=products.find(x=>x.id===id);if(!p)return;cart[id]=Math.min((cart[id]||0)+d,p.stock);if(cart[id]<=0)delete cart[id];updateCart();}
 function updateCart(){const entries=Object.entries(cart);$('#cartCount').textContent=entries.reduce((s,[,q])=>s+q,0);$('#cartItems').innerHTML=entries.length?entries.map(([id,q])=>{const p=products.find(x=>x.id==id);if(!p)return '';return `<div class="item"><div><strong>${p.name}</strong><div style="color:var(--muted);font-size:13px">${fmt(p.price)} c/u</div></div><div class="qty"><button onclick="change(${id},-1)">−</button><span>${q}</span><button onclick="change(${id},1)">+</button></div></div>`}).join(''):'<div class="empty">Todavía no agregas productos.</div>';const t=entries.reduce((s,[id,q])=>{const p=products.find(x=>x.id==id);return s+(p?p.price*q:0)},0);$('#total').textContent=fmt(t);}
-$('#cartBtn').onclick=()=>$('#drawer').classList.add('open');$('#close').onclick=$('#shade').onclick=()=>$('#drawer').classList.remove('open');
-$('#customClose').onclick=$('#customShade').onclick=()=>$('#customModal').classList.remove('open');
+$('#cartBtn').onclick=()=>$('#drawer').classList.add('open');$('#close').onclick=$('#shade').onclick=()=>$('#drawer').classList.remove('open');$('#customClose').onclick=$('#customShade').onclick=()=>$('#customModal').classList.remove('open');
 $('#orderBtn').onclick=()=>{if(!Object.keys(cart).length){alert('Agrega al menos un producto.');return;}if(!$('#customer').value.trim()||!$('#phone').value.trim()){alert('Completa tu nombre y contacto.');return;}$('#success').style.display='block';};
 $('#customSend').onclick=()=>{if(!$('#customName').value.trim()||!$('#customPhone').value.trim()||!$('#customIdea').value.trim()){alert('Completa tu nombre, contacto y cuéntanos tu idea.');return;}$('#customSuccess').style.display='block';};
 loadProducts();
