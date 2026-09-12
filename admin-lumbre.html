@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Lumbre · Portal founder</title>
+<style>
+:root{--bg:#f5f1ec;--card:#fff;--text:#28231f;--muted:#796f67;--accent:#9b5f46;--line:#e7ddd4;--green:#4e7557;--soft:#efe4dc;--danger:#a44b42}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
+header{position:sticky;top:0;z-index:10;background:rgba(245,241,236,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{max-width:1180px;margin:auto;padding:15px 20px;display:flex;justify-content:space-between;align-items:center}.brand{font-family:Georgia,serif;font-size:25px}.badge{font-size:12px;background:var(--soft);color:var(--accent);padding:7px 10px;border-radius:999px;font-weight:800}
+.wrap{max-width:1180px;margin:auto;padding:32px 20px 70px}.hero{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:24px}.hero h1{font-family:Georgia,serif;font-size:42px;margin:0 0 8px;font-weight:500}.hero p{margin:0;color:var(--muted)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0}.tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 15px;font-weight:800;cursor:pointer}.tab.active{background:var(--text);color:white;border-color:var(--text)}
+.section{display:none}.section.active{display:block}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}.stat{background:white;border:1px solid var(--line);border-radius:18px;padding:18px}.stat .n{font-size:30px;font-weight:800}.stat .l{color:var(--muted);font-size:13px;margin-top:4px}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:14px}.toolbar h2{font-family:Georgia,serif;font-size:30px;margin:0}.primary{border:0;background:var(--accent);color:#fff;padding:12px 16px;border-radius:12px;font-weight:800;cursor:pointer}.ghost{border:1px solid var(--line);background:#fff;padding:10px 13px;border-radius:10px;font-weight:800;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:white;border:1px solid var(--line);border-radius:18px;overflow:hidden}.photo{width:100%;aspect-ratio:4/3;object-fit:cover;background:#e9e1da}.cardBody{padding:15px}.card h3{font-family:Georgia,serif;font-size:22px;margin:0}.row{display:flex;justify-content:space-between;gap:10px;align-items:center}.muted{color:var(--muted)}.stock{font-size:12px;font-weight:800;background:#edf5ee;color:var(--green);padding:6px 9px;border-radius:999px}.cardActions{display:flex;gap:8px;margin-top:14px}.cardActions button{flex:1}
+.tableWrap{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:auto}table{width:100%;border-collapse:collapse;min-width:850px}th,td{text-align:left;padding:14px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:#faf7f4}td{font-size:14px}.status{padding:8px 10px;border:1px solid var(--line);border-radius:9px;background:white;font:inherit}.wa{display:inline-block;text-decoration:none;background:#257d4b;color:white;padding:8px 10px;border-radius:9px;font-weight:800;font-size:13px}
+.empty{padding:34px;text-align:center;color:var(--muted)}
+.modal{position:fixed;inset:0;display:none;z-index:50}.modal.open{display:block}.shade{position:absolute;inset:0;background:rgba(25,20,16,.5)}.panel{position:absolute;right:0;top:0;height:100%;width:min(520px,100%);background:white;padding:24px;overflow:auto}.panelHead{display:flex;justify-content:space-between;align-items:center}.close{border:0;background:#f3ede8;border-radius:50%;width:38px;height:38px;font-size:20px;cursor:pointer}.form label{display:block;font-size:12px;font-weight:800;margin-top:13px}.form input,.form textarea,.form select{width:100%;margin-top:6px;padding:12px;border:1px solid var(--line);border-radius:11px;font:inherit}.form textarea{min-height:90px}.photoBox{border:1px dashed #cdbdaf;border-radius:14px;padding:14px;text-align:center;margin-top:8px}.preview{width:100%;max-height:220px;object-fit:cover;border-radius:12px;display:none;margin-top:10px}.save{width:100%;margin-top:20px;border:0;background:var(--text);color:#fff;padding:14px;border-radius:12px;font-weight:800;cursor:pointer}.notice{padding:12px 14px;border-radius:12px;margin:12px 0;display:none}.notice.ok{display:block;background:#edf6ef;color:#315f3b}.notice.err{display:block;background:#fff0ee;color:#93443c}
+.settings{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;max-width:700px}.settings h3{margin-top:0;font-family:Georgia,serif;font-size:26px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:1fr 1fr}}@media(max-width:620px){.grid,.stats{grid-template-columns:1fr}.hero{align-items:start;flex-direction:column}.hero h1{font-size:36px}.wrap{padding:24px 14px 60px}.nav{padding:13px 14px}}
+</style>
+</head>
+<body>
+<header><div class="nav"><div class="brand">Lumbre · Administración</div><div class="badge">Portal founder</div></div></header>
+<main class="wrap">
+  <div class="hero"><div><h1>Tu negocio, en un solo lugar.</h1><p>Edita el catálogo, revisa pedidos y mueve cada venta a su siguiente etapa.</p></div><button class="ghost" onclick="location.reload()">Actualizar</button></div>
+  <div class="tabs"><button class="tab active" data-tab="resumen">Resumen</button><button class="tab" data-tab="catalogo">Catálogo</button><button class="tab" data-tab="pedidos">Pedidos</button><button class="tab" data-tab="config">Configuración</button></div>
+
+  <section class="section active" id="resumen">
+    <div class="stats"><div class="stat"><div class="n" id="sProducts">—</div><div class="l">Productos activos</div></div><div class="stat"><div class="n" id="sOrders">—</div><div class="l">Pedidos abiertos</div></div><div class="stat"><div class="n" id="sLow">—</div><div class="l">Productos con stock bajo</div></div></div>
+    <div class="toolbar"><h2>Pedidos recientes</h2><button class="ghost" data-go="pedidos">Ver todos</button></div><div id="recentOrders" class="tableWrap"><div class="empty">Cargando…</div></div>
+  </section>
+
+  <section class="section" id="catalogo">
+    <div class="toolbar"><h2>Catálogo</h2><button class="primary" id="addProduct">+ Agregar producto</button></div><div id="productGrid" class="grid"><div class="empty">Cargando catálogo…</div></div>
+  </section>
+
+  <section class="section" id="pedidos">
+    <div class="toolbar"><h2>Pedidos</h2><div class="muted">Cambia el estado y contacta al cliente desde aquí.</div></div><div id="ordersTable" class="tableWrap"><div class="empty">Cargando pedidos…</div></div>
+  </section>
+
+  <section class="section" id="config">
+    <div class="settings"><h3>Datos para cobrar</h3><p class="muted">Estos datos se usan para preparar el mensaje de pago por WhatsApp.</p><div class="form"><label>Banco</label><input id="bank" placeholder="Ej. Banco de Chile"><label>Tipo de cuenta</label><input id="accountType" placeholder="Cuenta corriente"><label>Número de cuenta</label><input id="accountNumber" placeholder="12345678"><label>Nombre titular</label><input id="accountName" placeholder="Nombre / empresa"><label>RUT</label><input id="rut" placeholder="12.345.678-9"><label>Correo para comprobante (opcional)</label><input id="paymentEmail" placeholder="pagos@empresa.cl"><button class="save" id="saveSettings">Guardar datos de pago</button><div id="settingsNotice" class="notice"></div></div></div>
+  </section>
+</main>
+
+<div class="modal" id="productModal"><div class="shade" id="modalShade"></div><div class="panel"><div class="panelHead"><div><div class="muted" style="font-size:12px;font-weight:800;text-transform:uppercase">Producto</div><h2 id="modalTitle" style="margin:4px 0 0;font-family:Georgia,serif">Agregar producto</h2></div><button class="close" id="modalClose">×</button></div><div class="form">
+<input type="hidden" id="pid"><label>Foto</label><div class="photoBox"><input type="file" id="photoFile" accept="image/*"><img id="photoPreview" class="preview"></div><input type="hidden" id="photoUrl">
+<label>Nombre</label><input id="pname" placeholder="Ej. Ámbar No. 01"><label>Descripción</label><textarea id="pdesc" placeholder="Aroma, material, formato…"></textarea><label>Precio</label><input id="pprice" type="number" min="0" placeholder="14990"><label>Stock</label><input id="pstock" type="number" min="0" placeholder="12"><label>Peso / formato</label><input id="pweight" placeholder="220 g"><label>Estado</label><select id="pactive"><option value="true">Activo</option><option value="false">Oculto</option></select><button class="save" id="saveProduct">Guardar producto</button><div id="productNotice" class="notice"></div>
+</div></div></div>
+<script>
+const API='/.netlify/functions/lumbre';
+let products=[],orders=[],editing=null,photoData='';
+const $=s=>document.querySelector(s); const fmt=n=>'$'+Number(n||0).toLocaleString('es-CL');
+const fallback='https://images.unsplash.com/photo-1602874801006-e26cc4dc8c3f?auto=format&fit=crop&w=900&q=80';
+
+function setTab(id){document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab===id));document.querySelectorAll('.section').forEach(x=>x.classList.toggle('active',x.id===id));}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>setTab(b.dataset.tab));document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>setTab(b.dataset.go));
+async function apiGet(action){const r=await fetch(API+'?action='+encodeURIComponent(action)+'&ts='+Date.now(),{cache:'no-store'});const j=await r.json();if(!j.ok)throw new Error(j.error||'Error');return j}
+async function apiPost(payload){const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const j=await r.json();if(!j.ok)throw new Error(j.error||'Error');return j}
+
+async function loadAll(){try{const p=await apiGet('productos');products=(p.productos||[]).map(x=>({...x,id:Number(x.id),price:Number(x.price),stock:Number(x.stock),active:x.active!==false}));renderProducts()}catch(e){$('#productGrid').innerHTML='<div class="empty">No se pudo cargar el catálogo.</div>'}
+try{const o=await apiGet('pedidos');orders=o.pedidos||[];renderOrders()}catch(e){orders=[];renderOrders()}renderStats()}
+function renderStats(){const active=products.filter(p=>p.active!==false).length;const open=orders.filter(o=>!['Entregado','Cancelado'].includes(o.estado)).length;const low=products.filter(p=>p.stock<=4).length;$('#sProducts').textContent=active;$('#sOrders').textContent=open;$('#sLow').textContent=low;renderRecent()}
+function renderRecent(){const list=orders.slice(0,5);$('#recentOrders').innerHTML=list.length?ordersTable(list):'<div class="empty">Todavía no hay pedidos.</div>'}
+function renderProducts(){if(!products.length){$('#productGrid').innerHTML='<div class="empty">No hay productos todavía.</div>';renderStats();return}$('#productGrid').innerHTML=products.map(p=>`<article class="card"><img class="photo" src="${p.img||p.photo||fallback}" onerror="this.src='${fallback}'"><div class="cardBody"><div class="row"><h3>${esc(p.name)}</h3><span class="stock">Stock: ${p.stock}</span></div><p class="muted" style="min-height:38px">${esc(p.desc||'')}</p><div class="row"><strong>${fmt(p.price)}</strong><span class="muted">${esc(p.weight||'')}</span></div><div class="cardActions"><button class="ghost" onclick="editProduct(${p.id})">Editar</button></div></div></article>`).join('');renderStats()}
+function ordersTable(list){return `<table><thead><tr><th>Pedido</th><th>Cliente</th><th>Productos</th><th>Total</th><th>Estado</th><th>Acción</th></tr></thead><tbody>${list.map(o=>`<tr><td><strong>${esc(o.id||'—')}</strong><br><span class="muted">${esc(o.fecha||'')}</span></td><td>${esc(o.cliente||'')}<br><span class="muted">${esc(o.whatsapp||'')}</span></td><td>${esc(o.productos||'')}</td><td><strong>${fmt(o.total)}</strong></td><td><select class="status" onchange="changeStatus('${attr(o.id)}',this.value)">${['Nuevo','Confirmado','Pagado','En preparación','Listo','Entregado','Cancelado'].map(s=>`<option ${s===o.estado?'selected':''}>${s}</option>`).join('')}</select></td><td>${waButton(o)}</td></tr>`).join('')}</tbody></table>`}
+function renderOrders(){const html=orders.length?ordersTable(orders):'<div class="empty">Todavía no hay pedidos.</div>';$('#ordersTable').innerHTML=html;renderRecent();renderStats()}
+function waButton(o){if(!o.whatsapp)return '—';const msg=paymentMessage(o);return `<a class="wa" target="_blank" href="https://wa.me/${digits(o.whatsapp)}?text=${encodeURIComponent(msg)}">WhatsApp</a>`}
+function paymentMessage(o){const b=$('#bank').value||localStorage.bank||'[Banco]';const t=$('#accountType').value||localStorage.accountType||'[Tipo de cuenta]';const n=$('#accountNumber').value||localStorage.accountNumber||'[N° cuenta]';const name=$('#accountName').value||localStorage.accountName||'[Titular]';const rut=$('#rut').value||localStorage.rut||'[RUT]';return `Hola ${o.cliente||''} 💛 Recibimos tu pedido ${o.id||''} por ${fmt(o.total)}. Para que entre en preparación, puedes transferir el total a:\n\n${b}\n${t}\n${n}\n${name}\n${rut}\n\nCuando hagas la transferencia, envíanos el comprobante por este mismo WhatsApp. Apenas confirmemos el pago, tu pedido pasa a preparación ✨`}
+async function changeStatus(id,status){try{await apiPost({action:'actualizarEstado',id,status});const o=orders.find(x=>String(x.id)===String(id));if(o)o.estado=status;renderOrders();if(status==='Pagado')alert('Estado actualizado a Pagado. Si la configuración está activa, aquí se descuenta el stock automáticamente.')}catch(e){alert('No se pudo actualizar: '+e.message);loadAll()}}
+
+function openModal(){photoData='';$('#productNotice').className='notice';$('#productModal').classList.add('open')}function closeModal(){$('#productModal').classList.remove('open')}
+$('#addProduct').onclick=()=>{editing=null;$('#modalTitle').textContent='Agregar producto';['pid','pname','pdesc','pprice','pstock','pweight','photoUrl'].forEach(id=>$('#'+id).value='');$('#pactive').value='true';$('#photoPreview').style.display='none';openModal()};
+window.editProduct=id=>{const p=products.find(x=>x.id===id);if(!p)return;editing=p;$('#modalTitle').textContent='Editar producto';$('#pid').value=p.id;$('#pname').value=p.name||'';$('#pdesc').value=p.desc||'';$('#pprice').value=p.price||0;$('#pstock').value=p.stock||0;$('#pweight').value=p.weight||'';$('#pactive').value=String(p.active!==false);$('#photoUrl').value=p.img||p.photo||'';if(p.img||p.photo){$('#photoPreview').src=p.img||p.photo;$('#photoPreview').style.display='block'}else $('#photoPreview').style.display='none';openModal()};
+$('#modalClose').onclick=$('#modalShade').onclick=closeModal;
+$('#photoFile').onchange=()=>{const f=$('#photoFile').files[0];if(!f)return;if(f.size>4*1024*1024){alert('Para esta demo usa una foto menor a 4 MB.');$('#photoFile').value='';return}const r=new FileReader();r.onload=()=>{photoData=r.result;$('#photoPreview').src=photoData;$('#photoPreview').style.display='block'};r.readAsDataURL(f)};
+$('#saveProduct').onclick=async()=>{const payload={action:'guardarProducto',id:$('#pid').value||null,name:$('#pname').value.trim(),desc:$('#pdesc').value.trim(),price:Number($('#pprice').value),stock:Number($('#pstock').value),weight:$('#pweight').value.trim(),active:$('#pactive').value==='true',photoUrl:$('#photoUrl').value,photoData};if(!payload.name||!Number.isFinite(payload.price)||!Number.isFinite(payload.stock)){notice('#productNotice','Completa nombre, precio y stock.','err');return}try{notice('#productNotice','Guardando…','ok');await apiPost(payload);notice('#productNotice','Producto guardado ✨','ok');setTimeout(()=>{closeModal();loadAll()},500)}catch(e){notice('#productNotice','No se pudo guardar: '+e.message,'err')}};
+$('#saveSettings').onclick=()=>{['bank','accountType','accountNumber','accountName','rut','paymentEmail'].forEach(id=>localStorage[id]=$('#'+id).value);notice('#settingsNotice','Datos guardados en este dispositivo para la demo.','ok')};['bank','accountType','accountNumber','accountName','rut','paymentEmail'].forEach(id=>{$('#'+id).value=localStorage[id]||''});
+function notice(sel,msg,type){const el=$(sel);el.textContent=msg;el.className='notice '+type}
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function attr(v){return esc(v).replace(/'/g,'&#39;')}function digits(v){let d=String(v||'').replace(/\D/g,'');if(d.startsWith('9')&&d.length===9)d='56'+d;if(d.startsWith('0'))d=d.slice(1);return d}
+loadAll();
+</script>
+</body>
+</html>
