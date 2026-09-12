@@ -3,9 +3,21 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz36AA4zd3nmjbC
 exports.handler = async function(event) {
   try {
     const params = new URLSearchParams(event.queryStringParameters || {});
-    if (!params.get('action')) params.set('action', 'productos');
+    if (!params.get('action') && event.httpMethod === 'GET') params.set('action', 'productos');
     const url = `${APPS_SCRIPT_URL}?${params.toString()}`;
-    const response = await fetch(url, { redirect: 'follow' });
+
+    const options = {
+      method: event.httpMethod === 'POST' ? 'POST' : 'GET',
+      redirect: 'follow',
+      headers: {}
+    };
+
+    if (event.httpMethod === 'POST') {
+      options.headers['Content-Type'] = event.headers['content-type'] || 'application/json';
+      options.body = event.body || '{}';
+    }
+
+    const response = await fetch(url, options);
     const body = await response.text();
 
     return {
